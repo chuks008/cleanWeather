@@ -60,6 +60,4 @@ public class WeatherDataRepository implements WeatherRepository {
         return weatherApi.getCurrentWeather(city, countryCode).map(weatherDataMapper::transform);
     }
 
-
-
 }

@@ -4,9 +4,11 @@ package interactor;
 import executor.PostExecutionThread;
 import executor.ThreadExecutor;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 // this class is used to create a use case called from a presenter to the data layer
@@ -31,19 +33,19 @@ public abstract class UseCase<T, Params> {
         this.disposables = new CompositeDisposable();
     }
 
-    abstract Observable<T> buildUseCaseObservable(Params params);
+    abstract Single<T> buildUseCaseObservable(Params params);
 
 
 
-    public void execute(DisposableObserver<T> observer, Params params) {
+    public void execute(DisposableSingleObserver<T> observer, Params params) {
 
         // add preconditions to check if the observer is not null
 
-        final Observable<T> observable = this.buildUseCaseObservable(params)
+        final Single<T> single = this.buildUseCaseObservable(params)
                         .subscribeOn(Schedulers.from(threadExecutor)) // which thread to run the program
                         .observeOn(postExecutionThread.getScheduler()); // which thread to return results to
 
-        addDisposable(observable.subscribeWith(observer));
+        addDisposable(single.subscribeWith(observer));
     }
 
     private void addDisposable(Disposable disposable) {
