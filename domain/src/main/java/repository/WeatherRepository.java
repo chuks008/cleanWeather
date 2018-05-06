@@ -1,11 +1,12 @@
 package repository;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import model.Weather;
 
 public interface WeatherRepository {
 
-    Observable<Weather> getCurrentWeather(final String city,
-                                          final String countryCode);
+    Single<Weather> getCurrentWeather(final String city,
+                                      final String countryCode);
 
 }
