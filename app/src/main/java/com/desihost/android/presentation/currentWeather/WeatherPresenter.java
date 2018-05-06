@@ -29,8 +29,12 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
     }
 
     @Override
-    public void getCurrentWeather() {
-        getCurrentWeatherUseCase.execute(new WeatherObserver(), Params.forCity("Lagos"));
+    public void getCurrentWeather(String city) {
+        fetchWeather(city);
+    }
+
+    private void fetchWeather(String city) {
+        getCurrentWeatherUseCase.execute(new WeatherObserver(), Params.forCity(city));
     }
 
     @Override
@@ -42,8 +46,8 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
         getView().stopLoading();
     }
 
-    private void showCurrentWeatherInView(Weather currentWeather) {
-
+    public void showCurrentWeatherInView(Weather currentWeather) {
+        view.renderWeather("");
     }
 
     private final class WeatherObserver extends DisposableSingleObserver<Weather> {
@@ -56,7 +60,7 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
 
         @Override
         public void onError(@NonNull Throwable e) {
-
+            view.showError();
         }
 
     }

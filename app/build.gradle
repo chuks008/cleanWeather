@@ -30,6 +30,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$root.appCompatVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
     testCompile "junit:junit:$root.jUnitVersion"
+    testCompile "org.mockito:mockito-core:$root.mockitoVersion"
 
     compile "io.reactivex.rxjava2:rxandroid:$root.rxandroidVersion"
 

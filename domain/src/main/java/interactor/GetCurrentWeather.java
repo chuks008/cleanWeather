@@ -3,6 +3,7 @@ package interactor;
 import executor.PostExecutionThread;
 import executor.ThreadExecutor;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import model.Weather;
 import repository.WeatherRepository;
 
@@ -20,7 +21,7 @@ public class GetCurrentWeather extends UseCase<Weather, GetCurrentWeather.Params
 
 
     @Override
-    Observable<Weather> buildUseCaseObservable(Params params) {
+    Single<Weather> buildUseCaseObservable(Params params) {
 
         // check to make sure the params are not null before you proceed to call the
         // weather repository

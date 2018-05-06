@@ -1,10 +1,13 @@
 package com.desihost.android.data.entity.currentWeather;
 
+import javax.inject.Inject;
+
 import model.Weather;
 
 public class WeatherDataMapper {
 
-    public WeatherDataMapper() {
+    @Inject
+    WeatherDataMapper() {
     }
 
     public Weather transform(CurrentWeatherEntity currentWeatherEntity) {

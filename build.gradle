@@ -51,6 +51,7 @@ ext {
 
     jUnitVersion = '4.12'
     espressoVersion = '2.2.2'
+    mockitoVersion = '2.6.8'
 
 }
 

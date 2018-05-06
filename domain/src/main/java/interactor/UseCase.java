@@ -35,8 +35,6 @@ public abstract class UseCase<T, Params> {
 
     abstract Single<T> buildUseCaseObservable(Params params);
 
-
-
     public void execute(DisposableSingleObserver<T> observer, Params params) {
 
         // add preconditions to check if the observer is not null
