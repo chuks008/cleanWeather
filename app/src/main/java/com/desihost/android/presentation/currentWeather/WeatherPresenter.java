@@ -1,5 +1,8 @@
 package com.desihost.android.presentation.currentWeather;
 
+import com.desihost.android.presentation.currentWeather.mapper.WeatherViewMapper;
+import com.desihost.android.presentation.currentWeather.model.CurrentWeatherView;
+
 import javax.inject.Inject;
 
 import interactor.DefaultObserver;
@@ -14,10 +17,14 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
 
     private CurrentWeatherViewContract.View view;
     private GetCurrentWeather getCurrentWeatherUseCase;
+    private WeatherViewMapper weatherViewMapper;
+    private CurrentWeatherView.TempUnit temperatureUnit = CurrentWeatherView.TempUnit.CELCIUS;
 
     @Inject
-    WeatherPresenter(GetCurrentWeather getCurrentWeatherUseCase) {
+    WeatherPresenter(GetCurrentWeather getCurrentWeatherUseCase,
+                     WeatherViewMapper weatherViewMapper) {
         this.getCurrentWeatherUseCase = getCurrentWeatherUseCase;
+        this.weatherViewMapper = weatherViewMapper;
     }
 
     public void setView(CurrentWeatherViewContract.View view) {
@@ -47,7 +54,7 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
     }
 
     public void showCurrentWeatherInView(Weather currentWeather) {
-        view.renderWeather("");
+        view.renderWeather(weatherViewMapper.transform(currentWeather, temperatureUnit));
     }
 
     private final class WeatherObserver extends DisposableSingleObserver<Weather> {

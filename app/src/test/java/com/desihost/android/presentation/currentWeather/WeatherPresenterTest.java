@@ -1,5 +1,7 @@
 package com.desihost.android.presentation.currentWeather;
 
+import com.desihost.android.presentation.currentWeather.mapper.WeatherViewMapper;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -28,6 +30,9 @@ public class WeatherPresenterTest {
     @Mock
     private CurrentWeatherViewContract.View view;
 
+    @Mock
+    private WeatherViewMapper weatherViewMapper;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
@@ -39,7 +44,7 @@ public class WeatherPresenterTest {
         // create fake data for passing to the presenter
 
 
-        WeatherPresenter weatherPresenter = new WeatherPresenter(getCurrentWeatherUseCase);
+        WeatherPresenter weatherPresenter = new WeatherPresenter(getCurrentWeatherUseCase, weatherViewMapper);
         weatherPresenter.setView(view);
 
         weatherPresenter.getCurrentWeather("Munich");

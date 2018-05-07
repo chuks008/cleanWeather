@@ -1,5 +1,7 @@
 package com.desihost.android.presentation.currentWeather;
 
+import com.desihost.android.presentation.currentWeather.model.CurrentWeatherView;
+
 public interface CurrentWeatherViewContract {
 
     interface View {
@@ -8,7 +10,7 @@ public interface CurrentWeatherViewContract {
         void showError();
         void stopLoading();
 
-        void renderWeather(String weatherString);
+        void renderWeather(CurrentWeatherView currentWeatherView);
     }
 
     interface UserClickListener {
