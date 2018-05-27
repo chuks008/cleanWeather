@@ -4,13 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.desihost.android.apipractical.MainActivity">
+    android:background="@drawable/weather_background_1"
+    android:animateLayoutChanges="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Toolbar to show city name -->
+
+    <include
+        android:id="@+id/current_weather_toolbar"
+        layout="@layout/current_weather_toolbar" />
+
+    <!-- Layout to house image, current weather, mix max, and contidions -->
+
+    <LinearLayout
+        android:id="@+id/weather_detail_container"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Hello World!"
-        />
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/current_weather_toolbar"
+        android:layout_marginTop="30dp"
+        android:visibility="gone">
+
+        <!-- Weather condition image dicated by id -->
+
+        <ImageView
+            android:id="@+id/weather_icon_image_view"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/partly_cloudy_day_100"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- Current temperature shell layout -->
+
+        <LinearLayout
+            android:id="@+id/current_temperature_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/current_temperature_textview"
+                style="@style/CurrentWeatherSectionStyle"
+                android:text="14"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                style="@style/CurrentWeatherSectionStyle"
+                android:text="°"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center">
+
+                <!-- Max temp -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/MinMaxTextStyle"
+                        android:text="Max: "/>
+
+                    <TextView
+                        android:id="@+id/max_temp_textview"
+                        style="@style/MinMaxTextStyle"
+                        android:text="18"/>
+
+                    <TextView
+                        style="@style/MinMaxTextStyle"
+                        android:text="°"/>
+
+                </LinearLayout>
+
+                <!-- Min Temp -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/MinMaxTextStyle"
+                        android:text="Min: "/>
+
+                    <TextView
+                        android:id="@+id/min_temp_textview"
+                        style="@style/MinMaxTextStyle"
+                        android:text="12"/>
+
+                    <TextView
+                        style="@style/MinMaxTextStyle"
+                        android:text="°"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/condition_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drizzling"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/loading_container"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <ProgressBar
+            android:id="@+id/weather_loading_progress"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminateTint="@android:color/white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/loading_status_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:gravity="center"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

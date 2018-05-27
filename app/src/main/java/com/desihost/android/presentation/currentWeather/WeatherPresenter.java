@@ -19,6 +19,7 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
     private GetCurrentWeather getCurrentWeatherUseCase;
     private WeatherViewMapper weatherViewMapper;
     private CurrentWeatherView.TempUnit temperatureUnit = CurrentWeatherView.TempUnit.CELCIUS;
+    private String currentCity;
 
     @Inject
     WeatherPresenter(GetCurrentWeather getCurrentWeatherUseCase,
@@ -36,8 +37,8 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
     }
 
     @Override
-    public void getCurrentWeather(String city) {
-        fetchWeather(city);
+    public void getCurrentWeather() {
+        fetchWeather(currentCity);
     }
 
     private void fetchWeather(String city) {
@@ -49,12 +50,17 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
 
     }
 
+    @Override
+    public void setCurrentCity(String city) {
+        this.currentCity = city;
+    }
+
     private void stopLoading() {
-        getView().stopLoading();
+        this.view.stopLoading();
     }
 
     public void showCurrentWeatherInView(Weather currentWeather) {
-        view.renderWeather(weatherViewMapper.transform(currentWeather, temperatureUnit));
+        view.renderWeather(currentCity, weatherViewMapper.transform(currentWeather, temperatureUnit));
     }
 
     private final class WeatherObserver extends DisposableSingleObserver<Weather> {

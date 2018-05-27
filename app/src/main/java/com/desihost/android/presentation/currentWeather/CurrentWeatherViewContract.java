@@ -10,12 +10,13 @@ public interface CurrentWeatherViewContract {
         void showError();
         void stopLoading();
 
-        void renderWeather(CurrentWeatherView currentWeatherView);
+        void renderWeather(String city, CurrentWeatherView currentWeatherView);
     }
 
     interface UserClickListener {
 
-        void getCurrentWeather(String city);
+        void getCurrentWeather();
+        void setCurrentCity(String city);
         void cancelCurrentSearch();
     }
 }
