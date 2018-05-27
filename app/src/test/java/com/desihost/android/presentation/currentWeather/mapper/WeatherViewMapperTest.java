@@ -22,7 +22,9 @@ public class WeatherViewMapperTest {
 
     @Before
     public void setUp() throws Exception {
+
         weatherViewMapper = new WeatherViewMapper();
+
         weatherDescription = "All clear skies today";
         iconId = "21e";
         weatherCondition = "Sunny, with small chance of precipitation";

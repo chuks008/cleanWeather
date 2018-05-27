@@ -32,17 +32,11 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
         this.view = view;
     }
 
-    public CurrentWeatherViewContract.View getView() {
-        return view;
-    }
-
     @Override
     public void getCurrentWeather() {
-        fetchWeather(currentCity);
-    }
+        view.startLoading();
+        getCurrentWeatherUseCase.execute(new WeatherObserver(), currentCity);
 
-    private void fetchWeather(String city) {
-        getCurrentWeatherUseCase.execute(new WeatherObserver(), city);
     }
 
     @Override
@@ -55,25 +49,25 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
         this.currentCity = city;
     }
 
-    private void stopLoading() {
-        this.view.stopLoading();
+    public void showCurrentWeatherInView(Weather currentWeather) {
+        view.stopLoading();
+        view.renderWeather(currentCity, weatherViewMapper.transform(currentWeather, temperatureUnit));
     }
 
-    public void showCurrentWeatherInView(Weather currentWeather) {
-        view.renderWeather(currentCity, weatherViewMapper.transform(currentWeather, temperatureUnit));
+    public void showRenderError() {
+        view.showError();
     }
 
     private final class WeatherObserver extends DisposableSingleObserver<Weather> {
 
         @Override
         public void onSuccess(@NonNull Weather weather) {
-            WeatherPresenter.this.stopLoading();
-            WeatherPresenter.this.showCurrentWeatherInView(weather);
+            showCurrentWeatherInView(weather);
         }
 
         @Override
         public void onError(@NonNull Throwable e) {
-            view.showError();
+            showRenderError();
         }
 
     }
