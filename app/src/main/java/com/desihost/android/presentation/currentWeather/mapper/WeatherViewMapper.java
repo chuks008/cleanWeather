@@ -14,7 +14,7 @@ public class WeatherViewMapper {
     public CurrentWeatherView transform(Weather weather, CurrentWeatherView.TempUnit tempUnit) {
         CurrentWeatherView currentWeatherView = null;
 
-        if(weather != null) {
+        if(weather != null && tempUnit != null) {
             currentWeatherView = new CurrentWeatherView();
             currentWeatherView.setIconId(weather.getIconId());
             currentWeatherView.setDescription(weather.getDescription());
@@ -22,9 +22,9 @@ public class WeatherViewMapper {
 
             // current temperature default is in kelvin
 
-            double tempMaxConvert;
-            double tempMinConvert;
-            double currentTempConvert;
+            int tempMaxConvert;
+            int tempMinConvert;
+            int currentTempConvert;
 
             if(tempUnit == CurrentWeatherView.TempUnit.FAHRENHEIT) {
                 tempMaxConvert =  convertToFahrenheit(weather.getTempMax());
@@ -36,7 +36,6 @@ public class WeatherViewMapper {
                 currentTempConvert = convertToCelcius(weather.getTemp());
             }
 
-
             currentWeatherView.setTempMax(tempMaxConvert);
             currentWeatherView.setTempMin(tempMinConvert);
             currentWeatherView.setTemp(currentTempConvert);
@@ -45,11 +44,11 @@ public class WeatherViewMapper {
         return currentWeatherView;
     }
 
-    private double convertToFahrenheit(double kelvin) {
-        return (9/5) * (kelvin - 273) + 32;
+    private int convertToFahrenheit(double kelvin) {
+        return (int) (1.8 * (kelvin - 273) + 32);
     }
 
-    private double convertToCelcius(double kelvin) {
-        return kelvin - 273;
+    private int convertToCelcius(double kelvin) {
+        return (int) kelvin - 273;
     }
 }

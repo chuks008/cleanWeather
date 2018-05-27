@@ -1,6 +1,7 @@
 package com.desihost.android.presentation.currentWeather;
 
 import com.desihost.android.presentation.currentWeather.mapper.WeatherViewMapper;
+import com.desihost.android.presentation.currentWeather.model.CurrentWeatherView;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,9 +49,9 @@ public class WeatherPresenterTest {
         weatherPresenter.setView(view);
 
         weatherPresenter.getCurrentWeather("Munich");
-        verify(getCurrentWeatherUseCase).execute(any(DisposableSingleObserver.class), any(GetCurrentWeather.Params.class));
+        verify(getCurrentWeatherUseCase).execute(any(DisposableSingleObserver.class), any(String.class));
         weatherPresenter.showCurrentWeatherInView(any(Weather.class));
-        verify(view).renderWeather("");
+        verify(view).renderWeather(any(CurrentWeatherView.class));
 //        verify(view).renderWeather(any(String.class));
 
     }

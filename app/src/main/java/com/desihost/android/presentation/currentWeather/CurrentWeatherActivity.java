@@ -19,7 +19,6 @@ public class CurrentWeatherActivity extends AppCompatActivity implements Current
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         weatherPresenter.setView(this);
-
         weatherPresenter.getCurrentWeather("Lagos");
     }
 

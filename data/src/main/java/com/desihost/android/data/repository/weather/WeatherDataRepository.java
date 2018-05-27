@@ -50,21 +50,21 @@ public class WeatherDataRepository implements WeatherRepository {
     }
 
     @Override
-    public Single<Weather> getCurrentWeather(String city, String countryCode) {
+    public Single<Weather> getCurrentWeather(String city) {
         return Single.fromCallable(new Callable<Weather>() {
             @Override
             public Weather call() throws Exception {
-                return getCurrentFromApi(city, countryCode);
+                return getCurrentFromApi(city);
             }
         });
     }
 
-    private Weather getCurrentFromApi(String city, String countryCode) {
+    private Weather getCurrentFromApi(String city) {
 
-        Weather fetchedWeather = new Weather();
+        Weather fetchedWeather = null;
 
         try {
-            Call<CurrentWeatherEntity> call = weatherApi.getCurrentWeather(city, countryCode);
+            Call<CurrentWeatherEntity> call = weatherApi.getCurrentWeather(city);
             Response<CurrentWeatherEntity> weatherResponse = call.execute();
 
             if(weatherResponse.isSuccessful()) {

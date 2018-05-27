@@ -41,7 +41,7 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
     }
 
     private void fetchWeather(String city) {
-        getCurrentWeatherUseCase.execute(new WeatherObserver(), Params.forCity(city));
+        getCurrentWeatherUseCase.execute(new WeatherObserver(), city);
     }
 
     @Override

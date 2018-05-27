@@ -10,8 +10,9 @@ import retrofit2.http.Query;
 
 public interface WeatherApi {
 
-    @GET("data/2.5/weather")
-    Call<CurrentWeatherEntity> getCurrentWeather(@Query("q") String city,
-                                                 @Query("appid") String appId);
+    String API_KEY = "your-api-key";
+
+    @GET("data/2.5/weather?appid"+API_KEY)
+    Call<CurrentWeatherEntity> getCurrentWeather(@Query("q") String city);
 
 }

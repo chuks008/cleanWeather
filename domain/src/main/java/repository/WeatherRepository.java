@@ -6,7 +6,6 @@ import model.Weather;
 
 public interface WeatherRepository {
 
-    Single<Weather> getCurrentWeather(final String city,
-                                      final String countryCode);
+    Single<Weather> getCurrentWeather(final String city);
 
 }
