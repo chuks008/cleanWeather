@@ -36,9 +36,9 @@ public class WeatherViewMapper {
                 currentTempConvert = convertToCelcius(weather.getTemp());
             }
 
-            currentWeatherView.setTempMax(tempMaxConvert);
-            currentWeatherView.setTempMin(tempMinConvert);
-            currentWeatherView.setTemp(currentTempConvert);
+            currentWeatherView.setTempMax(String.valueOf(tempMaxConvert));
+            currentWeatherView.setTempMin(String.valueOf(tempMinConvert));
+            currentWeatherView.setTemp(String.valueOf(currentTempConvert));
         }
 
         return currentWeatherView;

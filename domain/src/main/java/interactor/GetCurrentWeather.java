@@ -1,5 +1,7 @@
 package interactor;
 
+import javax.inject.Inject;
+
 import executor.PostExecutionThread;
 import executor.ThreadExecutor;
 import io.reactivex.Observable;
@@ -11,6 +13,7 @@ public class GetCurrentWeather extends UseCase<Weather, String> {
 
     private final WeatherRepository weatherRepository;
 
+    @Inject
     GetCurrentWeather(WeatherRepository weatherRepository, ThreadExecutor threadExecutor,
                       PostExecutionThread postExecutionThread) {
 

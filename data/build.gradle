@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+def root = rootProject.extensions.getByName("ext")
+
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
@@ -20,8 +22,8 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility 1.7
+        sourceCompatibility 1.7
     }
 }
 
@@ -35,6 +37,9 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonConverterVersion"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     provided "javax.annotation:jsr250-api:$rootProject.ext.jsrVersion"
+
+    testCompile "junit:junit:$root.jUnitVersion"
+    testCompile "org.mockito:mockito-core:$root.mockitoVersion"
 
     compile project(":domain")
     testCompile 'junit:junit:4.12'

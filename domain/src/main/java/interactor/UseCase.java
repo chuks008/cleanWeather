@@ -40,7 +40,7 @@ public abstract class UseCase<T, Params> {
         // add preconditions to check if the observer is not null
 
         final Single<T> single = this.buildUseCaseObservable(params)
-                        .subscribeOn(Schedulers.from(threadExecutor)) // which thread to run the program
+                        .subscribeOn(threadExecutor.getScheduler()) // which thread to run the program
                         .observeOn(postExecutionThread.getScheduler()); // which thread to return results to
 
         addDisposable(single.subscribeWith(observer));

@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.desihost.android.MyApp;
+import com.desihost.android.apipractical.BaseActivity;
 import com.desihost.android.apipractical.R;
+import com.desihost.android.di.components.ApplicationComponent;
 import com.desihost.android.presentation.currentWeather.model.CurrentWeatherView;
 
 import javax.inject.Inject;
 
-public class CurrentWeatherActivity extends AppCompatActivity implements CurrentWeatherViewContract.View, View.OnClickListener {
+public class CurrentWeatherActivity extends BaseActivity implements CurrentWeatherViewContract.View, View.OnClickListener {
 
     private TextView currentTemp, minTemp, maxTemp, condition;
     private TextView cityName;
@@ -31,6 +35,8 @@ public class CurrentWeatherActivity extends AppCompatActivity implements Current
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.getAppComponent().inject(this);
         setContentView(R.layout.activity_main);
 
         currentTemp = (TextView) findViewById(R.id.current_temperature_textview);
@@ -50,6 +56,8 @@ public class CurrentWeatherActivity extends AppCompatActivity implements Current
 
         weatherPresenter.setView(this);
         weatherPresenter.setCurrentCity("Lagos");
+
+        Log.e("Weather", "Getting the newest weather");
         weatherPresenter.getCurrentWeather();
 
     }
@@ -97,4 +105,5 @@ public class CurrentWeatherActivity extends AppCompatActivity implements Current
                 break;
         }
     }
+
 }

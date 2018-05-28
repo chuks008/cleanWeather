@@ -7,36 +7,36 @@ public class CurrentWeatherView {
         FAHRENHEIT
     }
 
-    private int temp;
-    private int tempMin;
-    private int tempMax;
+    private String temp;
+    private String tempMin;
+    private String tempMax;
     private String description;
     private String iconId;
     private String condition;
     private int conditionColor;
     private int backgroundColor;
 
-    public int getTemp() {
+    public String getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(String temp) {
         this.temp = temp;
     }
 
-    public int getTempMin() {
+    public String getTempMin() {
         return tempMin;
     }
 
-    public void setTempMin(int tempMin) {
+    public void setTempMin(String tempMin) {
         this.tempMin = tempMin;
     }
 
-    public int getTempMax() {
+    public String getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(int tempMax) {
+    public void setTempMax(String tempMax) {
         this.tempMax = tempMax;
     }
 

@@ -34,6 +34,8 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
 
     @Override
     public void getCurrentWeather() {
+
+        System.out.println("Getting current weather for: "+ currentCity);
         view.startLoading();
         getCurrentWeatherUseCase.execute(new WeatherObserver(), currentCity);
 
@@ -63,10 +65,13 @@ public class WeatherPresenter implements CurrentWeatherViewContract.UserClickLis
         @Override
         public void onSuccess(@NonNull Weather weather) {
             showCurrentWeatherInView(weather);
+            System.out.println("Weather acquired");
         }
 
         @Override
         public void onError(@NonNull Throwable e) {
+            e.printStackTrace();
+            System.out.println("Error getttings weather");
             showRenderError();
         }
 

@@ -1,9 +1,14 @@
 apply plugin: 'java'
 
+def root = rootProject.extensions.getByName("ext")
+
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
+    testCompile "junit:junit:$root.jUnitVersion"
+    testCompile "org.mockito:mockito-core:$root.mockitoVersion"
+    compile 'javax.inject:javax.inject:1'
 }
 
 sourceCompatibility = "1.7"

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.desihost.android.MyApp;
 import com.desihost.android.data.executor.BackgroundExecutor;
-import com.desihost.android.data.repository.weather.WeatherDataRepository;
+import com.desihost.android.data.repository.weather.prod.WeatherDataRepository;
 import com.desihost.android.executor.UIThread;
 
 import javax.inject.Singleton;
@@ -13,7 +13,6 @@ import dagger.Module;
 import dagger.Provides;
 import executor.PostExecutionThread;
 import executor.ThreadExecutor;
-import model.Weather;
 import repository.WeatherRepository;
 
 // this module takes one parameter to initialize the dependency injection, which is the application

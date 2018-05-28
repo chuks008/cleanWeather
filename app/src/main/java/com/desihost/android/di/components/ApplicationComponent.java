@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.desihost.android.apipractical.BaseActivity;
 import com.desihost.android.di.modules.ApplicationModule;
+import com.desihost.android.presentation.currentWeather.CurrentWeatherActivity;
 
 import javax.inject.Singleton;
 
@@ -28,7 +29,7 @@ import repository.WeatherRepository;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-    void inject(BaseActivity baseActivity);
+    void inject(CurrentWeatherActivity baseActivity);
 
     Context context();
     ThreadExecutor threadExecutor();
