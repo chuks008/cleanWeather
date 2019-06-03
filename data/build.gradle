@@ -7,6 +7,7 @@ android {
 
     defaultConfig {
         minSdkVersion root.minSdkVersion
+        buildToolsVersion root.buildToolsVersion
         targetSdkVersion root.compiledSdkVersion
         versionCode root.versionCode
         versionName root.versionName
