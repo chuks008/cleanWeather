@@ -3,12 +3,11 @@ apply plugin: 'com.android.library'
 def root = rootProject.extensions.getByName("ext")
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion root.compiledSdkVersion
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 27
+        minSdkVersion root.minSdkVersion
+        targetSdkVersion root.compiledSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -28,20 +27,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:$rootProject.ext.appCompatVersion"
-    compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonConverterVersion"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    provided "javax.annotation:jsr250-api:$rootProject.ext.jsrVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.appCompatVersion"
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonConverterVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compileOnly "javax.annotation:jsr250-api:$rootProject.ext.jsrVersion"
 
-    testCompile "junit:junit:$root.jUnitVersion"
-    testCompile "org.mockito:mockito-core:$root.mockitoVersion"
+    testImplementation "junit:junit:$root.jUnitVersion"
+    testImplementation "org.mockito:mockito-core:$root.mockitoVersion"
 
-    compile project(":domain")
-    testCompile 'junit:junit:4.12'
-    compile 'javax.inject:javax.inject:1'
+    implementation project(":domain")
+    testImplementation 'junit:junit:4.12'
+    implementation 'javax.inject:javax.inject:1'
 }

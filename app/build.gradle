@@ -1,11 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 def root = rootProject.extensions.getByName("ext")
 
 android {
     compileSdkVersion root.compiledSdkVersion
-    buildToolsVersion root.buildToolsVersion
     defaultConfig {
         applicationId "com.desihost.android.apipractical"
         minSdkVersion root.minSdkVersion
@@ -23,21 +21,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$root.espressoVersion", {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$root.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:$root.appCompatVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
-    testCompile "junit:junit:$root.jUnitVersion"
-    testCompile "org.mockito:mockito-core:$root.mockitoVersion"
+    implementation "com.android.support:appcompat-v7:$root.appCompatVersion"
+    testImplementation "junit:junit:$root.jUnitVersion"
+    testImplementation "org.mockito:mockito-core:$root.mockitoVersion"
 
-    compile "io.reactivex.rxjava2:rxandroid:$root.rxandroidVersion"
-    apt "com.google.dagger:dagger-compiler:$root.daggerVersion"
-    compile "com.google.dagger:dagger:$root.daggerVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$root.rxandroidVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$root.daggerVersion"
+    implementation "com.google.dagger:dagger:$root.daggerVersion"
 //    provided "javax.annotation:jsr250-api:$root.jsrVersion"
-    provided "org.glassfish:javax.annotation:10.0-b28"
+    compileOnly "org.glassfish:javax.annotation:10.0-b28"
 
-    compile project(':domain')
-    compile project(':data')
+    implementation project(':domain')
+    implementation project(':data')
 }
