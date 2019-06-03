@@ -8,8 +8,8 @@ android {
         applicationId "com.desihost.android.apipractical"
         minSdkVersion root.minSdkVersion
         targetSdkVersion root.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode root.versionCode
+        versionName root.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

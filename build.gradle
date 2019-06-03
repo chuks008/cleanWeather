@@ -31,6 +31,10 @@ allprojects {
 
 ext {
 
+    //app
+    versionCode = 1
+    versionName = "1.0"
+
     // sdk and tools
     minSdkVersion = 16
     targetSdkVersion = 27
