@@ -1,6 +1,7 @@
 package com.desihost.android.presentation.currentWeather.mapper;
 
 import com.desihost.android.presentation.currentWeather.model.CurrentWeatherView;
+import com.desihost.android.presentation.utils.TempConvertUtils;
 
 import javax.inject.Inject;
 
@@ -27,9 +28,9 @@ public class WeatherViewMapper {
             int currentTempConvert;
 
             if(tempUnit == CurrentWeatherView.TempUnit.FAHRENHEIT) {
-                tempMaxConvert =  convertToFahrenheit(weather.getTempMax());
-                tempMinConvert = convertToFahrenheit(weather.getTempMin());
-                currentTempConvert = convertToFahrenheit(weather.getTemp());
+                tempMaxConvert = TempConvertUtils.convertToFahrenheit(weather.getTempMax());
+                tempMinConvert = TempConvertUtils.convertToFahrenheit(weather.getTempMin());
+                currentTempConvert = TempConvertUtils.convertToFahrenheit(weather.getTemp());
             } else {
                 tempMaxConvert =  convertToCelcius(weather.getTempMax());
                 tempMinConvert = convertToCelcius(weather.getTempMin());
@@ -44,11 +45,11 @@ public class WeatherViewMapper {
         return currentWeatherView;
     }
 
-    private int convertToFahrenheit(double kelvin) {
+    public int convertToFahrenheit(double kelvin) {
         return (int) (1.8 * (kelvin - 273) + 32);
     }
 
-    private int convertToCelcius(double kelvin) {
+    public int convertToCelcius(double kelvin) {
         return (int) kelvin - 273;
     }
 }

@@ -63,21 +63,21 @@ public class WeatherViewMapperTest {
     public void checkTempTransformToCelcius() throws Exception {
 
         CurrentWeatherView weatherView = weatherViewMapper.transform(weather, CurrentWeatherView.TempUnit.CELCIUS);
-
-        assertEquals(weatherView.getTempMax(), 9);
-        assertEquals(weatherView.getTempMin(), 5);
-        assertEquals(weatherView.getTemp(), 8);
-
+        assertEquals(weatherView.getTempMax(), "19");
+        assertEquals(weatherView.getTempMin(), "14");
+        assertEquals(weatherView.getTemp(), "17");
     }
+
 
     @Test
     public void checkTempTransformToFahrenheit() throws Exception {
 
         CurrentWeatherView weatherView = weatherViewMapper.transform(weather, CurrentWeatherView.TempUnit.FAHRENHEIT);
-
-        assertEquals(weatherView.getTempMax(), 66);
-        assertEquals(weatherView.getTempMin(), 57);
-        assertEquals(weatherView.getTemp(), 63);
+        assertEquals(weatherView.getTempMax(), "67");
+        assertEquals(weatherView.getTempMin(), "58");
+        assertEquals(weatherView.getTemp(), "64");
 
     }
+
+
 }
