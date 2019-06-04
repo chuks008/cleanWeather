@@ -6,6 +6,8 @@ android {
     compileSdkVersion root.compiledSdkVersion
     defaultConfig {
         applicationId "com.desihost.android.apipractical"
+        buildToolsVersion root.buildToolsVersion
+        compileSdkVersion root.compiledSdkVersion
         minSdkVersion root.minSdkVersion
         targetSdkVersion root.targetSdkVersion
         versionCode root.versionCode
