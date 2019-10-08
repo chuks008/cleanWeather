@@ -1,5 +1,4 @@
 # cleanWeather
-An Android demo using clean architecture to show the weather
+An Android demo using clean architecture to show the weather (WIP)
 
-####Master branch build status: 
 ![](https://travis-ci.org/chuks008/cleanWeather.svg?branch=master)
